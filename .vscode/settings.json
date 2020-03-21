@@ -10,5 +10,6 @@
         "xstring": "cpp",
         "xtree": "cpp",
         "xutility": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
