@@ -81,8 +81,8 @@ public:
         roman['D'] = 500;
         roman['M'] = 1000;
         int result = 0;
-
-        for (int i = 0; i < s.length(); ++i)
+        int i;
+        for (i = 0; i < s.length()-1; ++i)
         {
             if (roman[s[i]] < roman[s[i + 1]])
             {
@@ -93,7 +93,7 @@ public:
                 result += roman[s[i]];
             }
         }
-        return result;
+        return result + roman[s[i]];
     }
 };
 // @lc code=end
