@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <math.h>
+#include<cmath>
 using namespace std;
 
 class Solution {
@@ -15,21 +16,16 @@ public:
             return true;
         }
 
-        int i = 0;
-        int y = x;
-        while (x != 0)
-        {
-            x /= 10;
-            i++;
-        }
+        int i;
+        i = log10(x) + 1;
 
         while (i > 0)
         {
-            if (y % 10 != int (y / pow(10 , (i - 1))))
+            if (x % 10 != int (x / pow(10 , (i - 1))))
             {
                 return false;
             }
-            y = y % int(pow(10 , (i - 1))) / 10;
+            x = x % int(pow(10 , (i - 1))) / 10;
             i -= 2;
         }
         
@@ -40,7 +36,7 @@ public:
 int main(void)
 {
 
-    int x = 12231;
+    int x = 121;
     bool ans;
     Solution so;
     ans = so.isPalindrome(x);
