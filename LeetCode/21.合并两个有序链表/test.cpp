@@ -72,5 +72,9 @@ int main(void)
     Solution so;
     ans = so.mergeTwoLists(l1, l2);
     print(ans);
+	delete(l1);
+	delete(l2);
+	delete(ans);
+
 	return 0;
 }
