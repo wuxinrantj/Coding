@@ -11,14 +11,11 @@ public:
             return 0;
         }else{
             int j = 0;
-            for (auto it = nums.begin(); it != nums.end();){
-                if (*it == val){
-                    it = nums.erase(it);
-                }else{
-                    it++;
+            for (int i = 0; i < nums.size(); ++i){
+                if (nums[i] != val){
+                    nums[j] = nums[i];
                     j++;
                 }
-                
             }
             for (int k = 0; k < j; ++k){
                 cout<<nums[k]<<' ';
