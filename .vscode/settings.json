@@ -10,7 +10,8 @@
         "xstring": "cpp",
         "xtree": "cpp",
         "xutility": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "sstream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
