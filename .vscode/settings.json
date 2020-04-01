@@ -12,7 +12,10 @@
         "xutility": "cpp",
         "new": "cpp",
         "sstream": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "string_view": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
