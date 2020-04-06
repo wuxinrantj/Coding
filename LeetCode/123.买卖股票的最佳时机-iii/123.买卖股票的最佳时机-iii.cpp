@@ -53,22 +53,17 @@ public:
             return 0;
         }
         int kmax = 2;
-        vector<vector<vector<int>>> dp(prices.size(), vector<vector<int>>(kmax + 1, vector<int>(2,0)));
-
-        for(int i = 0; i < prices.size(); ++i) {
-            for(int k = kmax; k >= 1; --k) {
-                if(i == 0) {
-                    dp[i][k][0] = 0;
-                    dp[i][k][1] = - prices[i];
-                    continue;
-                }
-
-                dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i]);
-                dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]);
+        vector<vector<int> > dp(kmax + 1, vector<int>{0, INT_MIN});
+        for (int i = 0; i < prices.size(); ++i) 
+        {
+            for (int j = kmax; j > 0; --j) 
+            {
+                dp[j][0] = max(dp[j][0], dp[j][1] + prices[i]);
+                dp[j][1] = max(dp[j][1], dp[j - 1][0] - prices[i]);
             }
         }
+        return dp[kmax][0];
 
-        return dp[prices.size() - 1][kmax][0];
     }
 };
 // @lc code=end
