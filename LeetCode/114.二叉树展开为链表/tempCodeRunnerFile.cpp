@@ -1,0 +1,1 @@
+            root = root->right; // 继续下一个节点
