@@ -44,52 +44,26 @@
 // @lc code=start
 class Solution {
 public:
-    vector<vector<string>> res;
     int totalNQueens(int n) {
-        vector<string> board(n, string(n, '.'));
-        backtrack(board, 0);
-        return res.size();
+        dfs(n, 0, 0, 0, 0);
+        
+        return this->res;
     }
-
-    void backtrack(vector<string>& board, int row) {
-        if (row == board.size()) {
-            res.push_back(board);
-            return;
-        }
-        int n = board[row].size();
-        for (int col = 0; col < n; col++) {
-            // 排除不合法选择
-            if (!isValid(board, row, col)) {
-                continue;
-            }
-            // 做选择
-            board[row][col] = 'Q';
-            // 进⼊下⼀⾏决策
-            backtrack(board, row + 1);
-            // 撤销选择
-            board[row][col] = '.';
+    
+    void dfs(int n, int row, int col, int ld, int rd) {
+        if (row >= n) { res++; return; }
+        
+        // 将所有能放置 Q 的位置由 0 变成 1，以便进行后续的位遍历   1 代表不能放置，0 代表可以放置
+        int bits = ~(col | ld | rd) & ((1 << n) - 1);      //列、左斜下、右斜下
+        while (bits > 0) {
+            int pick = bits & -bits; //  x & -x 代表除最后一位 1 保留，其它位全部为 0
+            dfs(n, row + 1, col | pick, (ld | pick) << 1, (rd | pick) >> 1);
+            bits &= bits - 1; //  x & (x - 1)  代表将最后一位 1 变成 0
         }
     }
 
-    bool isValid(vector<string>& board, int row, int col) {
-        int n = board.size();
-        // 检查列是否有皇后互相冲突
-        for (int i = 0; i < n; i++) {
-            if (board[i][col] == 'Q')
-            return false;
-        }
-        // 检查右上⽅是否有皇后互相冲突
-        for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
-            if (board[i][j] == 'Q')
-            return false;
-        }
-        // 检查左上⽅是否有皇后互相冲突
-        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-            if (board[i][j] == 'Q')
-            return false;
-        }
-        return true;
-    }
+private:
+    int res = 0;
 };
 // @lc code=end
 
