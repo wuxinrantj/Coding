@@ -4,6 +4,7 @@
         "map": "cpp",
         "vector": "cpp",
         "iterator": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "string_view": "cpp"
     }
 }
