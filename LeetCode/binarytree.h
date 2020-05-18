@@ -39,21 +39,21 @@ string treeNodeToString(TreeNode* root) {
     return "[" + output.substr(0, output.length() - 2) + "]";
 }
 
-void trimLeftTrailingSpaces(string &input) {
+void trimLeftTrailingSpaces_tree(string &input) {
     input.erase(input.begin(), find_if(input.begin(), input.end(), [](int ch) {
         return !isspace(ch);
     }));
 }
 
-void trimRightTrailingSpaces(string &input) {
+void trimRightTrailingSpaces_tree(string &input) {
     input.erase(find_if(input.rbegin(), input.rend(), [](int ch) {
         return !isspace(ch);
     }).base(), input.end());
 }
 
 TreeNode* stringToTreeNode(string input) {
-    trimLeftTrailingSpaces(input);
-    trimRightTrailingSpaces(input);
+    trimLeftTrailingSpaces_tree(input);
+    trimRightTrailingSpaces_tree(input);
     input = input.substr(1, input.length() - 2);
     if (!input.size()) {
         return nullptr;
@@ -76,7 +76,7 @@ TreeNode* stringToTreeNode(string input) {
             break;
         }
 
-        trimLeftTrailingSpaces(item);
+        trimLeftTrailingSpaces_tree(item);
         if (item != "null") {
             int leftNumber = stoi(item);
             node->left = new TreeNode(leftNumber);
@@ -87,7 +87,7 @@ TreeNode* stringToTreeNode(string input) {
             break;
         }
 
-        trimLeftTrailingSpaces(item);
+        trimLeftTrailingSpaces_tree(item);
         if (item != "null") {
             int rightNumber = stoi(item);
             node->right = new TreeNode(rightNumber);

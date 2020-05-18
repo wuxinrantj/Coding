@@ -13,13 +13,13 @@ struct ListNode {
 };
 
 
-void trimLeftTrailingSpaces(string &input) {
+void trimLeftTrailingSpaces_list(string &input) {
     input.erase(input.begin(), find_if(input.begin(), input.end(), [](int ch) {
         return !isspace(ch);
     }));
 }
 
-void trimRightTrailingSpaces(string &input) {
+void trimRightTrailingSpaces_list(string &input) {
     input.erase(find_if(input.rbegin(), input.rend(), [](int ch) {
         return !isspace(ch);
     }).base(), input.end());
@@ -27,8 +27,8 @@ void trimRightTrailingSpaces(string &input) {
 
 vector<int> stringToIntegerVector(string input) {
     vector<int> output;
-    trimLeftTrailingSpaces(input);
-    trimRightTrailingSpaces(input);
+    trimLeftTrailingSpaces_list(input);
+    trimRightTrailingSpaces_list(input);
     input = input.substr(1, input.length() - 2);
     stringstream ss;
     ss.str(input);
